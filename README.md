@@ -41,17 +41,26 @@ AI 분석	TensorFlow, STT Engine (Vosk/Google STT)
 모니터링	OpenTSDB (옵션)
 
 ### 1.4 데이터 흐름
-사용자 음성 데이터 업로드 (파일 + 메타데이터 JSON)
+Kafka (Producer)
+음성 파일 경로 또는 음성 데이터 메타 정보 발행
+                 ↓
+Hadoop HDFS (Kafka Connect Sink)
+원본 음성 파일 저장
+                 ↓
+Spark Batch + Vosk
+HDFS에 저장된 WAV 파일 불러오기
 
-Kafka로 메타데이터 실시간 수집
+Vosk STT 처리
+텍스트 결과 재저장 (HDFS / Hive 테이블)
+                 ↓
+Hive / Presto
+텍스트 데이터 SQL 조회 및 분석
+                 ↓
+TensorFlow NLP
+Hive/Presto에서 불러온 텍스트 기반 감정 분석/키워드 추출
+                 ↓
+결과 데이터 저장 (HDFS / Hive)
+Zeppelin / Hue
 
-Kafka Connect로 HDFS 파일/메타데이터 적재
 
-Spark Job으로 음성 → 텍스트 변환
-
-Hive/Presto로 텍스트 조회/분석
-
-TensorFlow NLP 분석 (감정 분석, 키워드 추출 등)
-
-Zeppelin을 통한 결과 시각화
 
