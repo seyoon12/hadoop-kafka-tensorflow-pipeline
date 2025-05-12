@@ -47,7 +47,7 @@
 6. **Zeppelin / Hue**
    - 분석 결과 시각화 및 리포트
   
-## 디렉토리
+## 6. 디렉토리
 ```bash
 hadoop-kafka-tensorflow-pipeline/
 ├── README.md
