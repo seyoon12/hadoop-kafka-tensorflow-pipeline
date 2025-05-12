@@ -46,3 +46,23 @@
    - 결과 데이터 저장 (HDFS / Hive)
 6. **Zeppelin / Hue**
    - 분석 결과 시각화 및 리포트
+  
+## 디렉토리
+```bash
+hadoop-kafka-tensorflow-pipeline/
+├── README.md
+├── architecture.md
+├── manifests/                # Helm Chart 또는 K8s 리소스 정의
+│   ├── kafka-values.yaml
+│   ├── kafka-connect-values.yaml
+│   ├── hadoop-values.yaml
+│   └── spark-job.yaml
+├── stt-processor/             # Vosk 기반 STT 처리기
+│   ├── stt_processor.py
+│   └── requirements.txt
+├── tensorflow-nlp/            # TensorFlow NLP 분석기
+│   ├── nlp_analyzer.py
+│   └── requirements.txt
+└── data/                      # 테스트 데이터 (예: 샘플 WAV 파일)
+    └── sample.wav
+```
